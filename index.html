@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -37,11 +38,21 @@
       <h2>สับเปลี่ยน LTF ไป TESGX ดีไหม?</h2>
       <div class="field">
         <label for="ltfValue">วงเงินย้ายจาก LTF</label>
-        <input type="text" id="ltfValue" placeholder="0.00" />
+        <input
+          type="text"
+          id="ltfValue"
+          placeholder="0.00"
+          inputmode="decimal"
+        />
       </div>
       <div class="field">
         <label for="returnPct">ผลตอบแทนช่วง 5 ปี (%)</label>
-        <input type="text" id="returnPct" placeholder="0.00" />
+        <input
+          type="text"
+          id="returnPct"
+          placeholder="0.00"
+          inputmode="decimal"
+        />
         <div class="sign-toggle">
           <button type="button" id="signPos" class="sign-btn active">＋</button>
           <button type="button" id="signNeg" class="sign-btn">−</button>
