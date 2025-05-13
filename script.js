@@ -67,18 +67,29 @@ window.addEventListener('DOMContentLoaded', () => {
     signPos.classList.remove('active');
   });
 
-  // ฟอร์แมต input ทั้งสอง
+  // ฟอร์แมต input ทั้งสอง และป้องกันการพิมพ์ตัวอักษร
   ['ltfValue', 'returnPct'].forEach(id => {
     const inp = document.getElementById(id);
+
+    // ฟอร์แมตตัวเลขเมื่อพิมพ์
     inp.addEventListener('input', e => {
       let val = e.target.value.replace(/,/g, '');
       if (!val.match(/^-?[0-9]*\.?[0-9]*$/)) val = val.slice(0, -1);
       e.target.value = val ? formatNumberWithCommas(val) : '';
     });
+
+    // กด Enter ให้คลิกปุ่มคำนวณ
     inp.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         e.preventDefault();
         document.getElementById('calcBtn').click();
+      }
+    });
+
+    // ป้องกันการพิมพ์อักขระที่ไม่ใช่ตัวเลข จุด หรือขีดลบ
+    inp.addEventListener('keypress', e => {
+      if (!/[0-9.\-]/.test(e.key)) {
+        e.preventDefault();
       }
     });
   });
