@@ -1,5 +1,5 @@
+// script.js
 window.addEventListener('DOMContentLoaded', () => {
-  // ฟอร์แมตเลขด้วย comma ทุกพัน (รองรับลบได้)
   function formatNumberWithCommas(x) {
     const parts = x.toString().split('.');
     const integer = parts[0].replace('-', '');
@@ -8,13 +8,11 @@ window.addEventListener('DOMContentLoaded', () => {
     return parts.join('.');
   }
 
-  // สลับหน้า
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
   }
 
-  // สร้างตารางลดหย่อน
   function computeSchedule(ltf) {
     const maxDeduct = Math.min(ltf, 500000);
     const sched = [];
@@ -34,7 +32,6 @@ window.addEventListener('DOMContentLoaded', () => {
     return sched;
   }
 
-  // คำนวณ IRR (Newton’s method)
   function irr(cfs, guess = 0.1) {
     let rate = guess;
     for (let iter = 0; iter < 100; iter++) {
@@ -50,7 +47,6 @@ window.addEventListener('DOMContentLoaded', () => {
     return rate;
   }
 
-  // เริ่มต้น returnSign และปุ่ม +/−
   let returnSign = 1;
   const signPos = document.getElementById('signPos');
   const signNeg = document.getElementById('signNeg');
@@ -67,34 +63,26 @@ window.addEventListener('DOMContentLoaded', () => {
     signPos.classList.remove('active');
   });
 
-  // ฟอร์แมต input ทั้งสอง และป้องกันการพิมพ์ตัวอักษร
   ['ltfValue', 'returnPct'].forEach(id => {
     const inp = document.getElementById(id);
-
-    // ฟอร์แมตตัวเลขเมื่อพิมพ์
     inp.addEventListener('input', e => {
       let val = e.target.value.replace(/,/g, '');
-      if (!val.match(/^-?[0-9]*\.?[0-9]*$/)) val = val.slice(0, -1);
+      if (!val.match(/^[0-9]*\.?[0-9]*$/)) val = val.slice(0, -1);
       e.target.value = val ? formatNumberWithCommas(val) : '';
     });
-
-    // กด Enter ให้คลิกปุ่มคำนวณ
     inp.addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         e.preventDefault();
         document.getElementById('calcBtn').click();
       }
     });
-
-    // ป้องกันการพิมพ์อักขระที่ไม่ใช่ตัวเลข จุด หรือขีดลบ
     inp.addEventListener('keypress', e => {
-      if (!/[0-9.\-]/.test(e.key)) {
+      if (!/[0-9.]/.test(e.key)) {
         e.preventDefault();
       }
     });
   });
 
-  // ฟังก์ชันคำนวณหลัก (Page 1 → Page 2)
   function doCalculate() {
     const rawLtf = document.getElementById('ltfValue').value.replace(/,/g, '');
     const rawRet = document.getElementById('returnPct').value.replace(/,/g, '');
@@ -105,7 +93,6 @@ window.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // สร้างตารางลดหย่อน
     const sched = computeSchedule(ltf);
     const tbody = document.querySelector('#deductionTable tbody');
     tbody.innerHTML = '';
@@ -119,12 +106,10 @@ window.addEventListener('DOMContentLoaded', () => {
       tbody.appendChild(tr);
     });
 
-    // ขาย LTF ได้เงิน (1 + returnPct)
     const saleAmt = ltf * (1 + returnPct);
     document.getElementById('saleText').textContent =
       `ขาย LTF ได้เงิน ${formatNumberWithCommas(saleAmt.toFixed(2))} บาท`;
 
-    // คำนวณ IRR
     const cfs = [-ltf, ...sched.map(r => r.tax)];
     cfs[cfs.length - 1] += ltf * (1 + returnPct);
     const rate = irr(cfs);
@@ -136,14 +121,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('calcBtn').addEventListener('click', doCalculate);
 
-  // Page 2 → Page 3
   document.getElementById('nextBtn2').addEventListener('click', () => {
     document.querySelectorAll('.decision').forEach(d => d.classList.add('hidden'));
     document.getElementById('decision1').classList.remove('hidden');
     showPage('page3');
   });
 
-  // Page 2 รีเซ็ต
   document.getElementById('restartBtn2').addEventListener('click', () => {
     document.getElementById('ltfValue').value = '';
     document.getElementById('returnPct').value = '';
@@ -153,13 +136,11 @@ window.addEventListener('DOMContentLoaded', () => {
     showPage('page1');
   });
 
-  // Page 3 → Page 4 (คำถาม & คำแนะนำ)
   document.getElementById('page3').addEventListener('click', e => {
     if (!e.target.matches('button[data-choice]')) return;
     const reco = document.getElementById('recoText');
     const ch = e.target.dataset.choice;
 
-    // คำถามข้อ 1
     if (ch === 'yes1' || ch === 'no1') {
       document.getElementById('decision1').classList.add('hidden');
       if (ch === 'yes1') {
@@ -170,7 +151,6 @@ window.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // คำถามข้อ 2
     if (ch === 'yes2' || ch === 'no2') {
       document.getElementById('decision2').classList.add('hidden');
       if (ch === 'yes2') {
@@ -183,7 +163,6 @@ window.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // คำถามข้อ 3
     if (ch === 'yes3' || ch === 'no3') {
       document.getElementById('decision3').classList.add('hidden');
       if (ch === 'yes3') {
@@ -197,7 +176,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Page 4 รีเซ็ต
   document.getElementById('restartBtn4').addEventListener('click', () => {
     document.getElementById('ltfValue').value = '';
     document.getElementById('returnPct').value = '';
