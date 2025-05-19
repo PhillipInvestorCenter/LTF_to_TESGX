@@ -1,0 +1,189 @@
+/* styles.css */
+:root {
+  --font: 'Kanit', sans-serif;
+  --primary: #3366cc;
+  --secondary: #f0f4f0;
+  --highlight-bg: #fff8e1;
+  --highlight-border: #ffa726;
+  --intro-bg: #f0f4ff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+body {
+  background: #eef2f7;
+  margin: 0;
+  padding: 1rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Card base styling */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Pages */
+.page { display: none; }
+.page.active { display: block; }
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #222;
+}
+
+/* Center titles on page 3 & 4 */
+#page3 h2,
+#page4 h2 {
+  text-align: center;
+}
+
+/* Form fields */
+.field { margin-bottom: 1rem; }
+label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+input[type="text"],
+input[type="number"] {
+  width: 100%; padding: 0.6rem; font-size: 1rem;
+  border: 1px solid #ccc; border-radius: 6px;
+}
+
+/* Slider */
+.slider-container {
+  position: relative; width: 100%; margin-top: 1rem;
+}
+input[type="range"] { width: 100%; }
+.slider-bubble {
+  position: absolute; top: -2.4rem; left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary); color: #fff;
+  padding: 0.3rem 0.6rem; border-radius: 4px;
+  font-size: 0.9rem; pointer-events: none;
+}
+
+/* Dividend info */
+.info-icon { margin-left: 0.5rem; cursor: pointer; color: var(--primary); }
+.info-text {
+  margin-top: 0.5rem; font-size: 0.9rem;
+  background: #f9f9f9; padding: 0.5rem; border-radius: 4px;
+}
+.hidden { display: none; }
+
+/* Buttons */
+.btn {
+  font-size: 1rem; padding: 0.6rem 1.2rem;
+  border: 1px solid transparent; border-radius: 6px;
+  cursor: pointer; transition: background 0.2s, transform 0.1s, border-color 0.2s;
+  margin-right: 0.5rem;
+}
+.btn.primary   { background: var(--primary); color: #fff; }
+.btn.secondary { background: var(--secondary); color: #333; }
+.btn:hover     { transform: translateY(-1px); }
+
+.actions { margin-top: 1.5rem; }
+
+/* Accordion */
+.accordion .item { margin-bottom: 1rem; }
+.info-header {
+  padding: 0.8rem; font-weight: 600; cursor: pointer;
+  background: var(--intro-bg); border: 1px solid var(--primary);
+  border-radius: 6px;
+}
+.info-content {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease; margin-top: 0.5rem;
+  padding-left: 0.8rem;
+}
+.info-content.open { max-height: 800px; }
+
+/* Receipt (Page 1) */
+.receipt {
+  border: 1px solid #ddd; border-radius: 8px;
+  padding: 1rem; margin-top: 1rem;
+}
+.receipt h3 {
+  margin: 0 0 1rem; color: #28a745; font-size: 1.2rem;
+}
+.receipt p {
+  display: flex; justify-content: space-between; margin: 0.5rem 0;
+}
+.receipt p:not(:last-child) {
+  border-bottom: 1px solid #eee; padding-bottom: 0.5rem;
+}
+.receipt .label { font-weight: 600; }
+.value-unit { display: flex; align-items: center; }
+.value-unit .unit { margin-left: 0.25rem; }
+
+/* Modern Question Buttons (Pages 3 & 4) */
+.question-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.btn.modern {
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn.modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn.modern.primary {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+}
+
+.btn.modern.secondary {
+  background: #fff;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+/* Modern Links/Buttons */
+.modern-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.modern-link {
+  background: #fff;
+  color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  border: 1px solid var(--primary);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.modern-link:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}

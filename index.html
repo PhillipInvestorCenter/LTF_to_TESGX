@@ -1,0 +1,280 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flow แนะนำ LTF → TESGX</title>
+  <!-- Import Kanit -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Page 1 -->
+    <section id="page1" class="page active card">
+      <h2>ประเมินความคุ้มค่าในการลงทุน LTF เบื้องต้น</h2>
+      <div class="field">
+        <label for="ltfValue">มูลค่าต้นทุนของกองทุน LTF (บาท)</label>
+        <input type="text" id="ltfValue" placeholder="0.00" inputmode="decimal" />
+      </div>
+      <div class="field">
+        <label for="taxSavedValue">มูลค่าที่ท่านได้ลดหย่อนภาษี (บาท)</label>
+        <input type="text" id="taxSavedValue" placeholder="0.00" inputmode="decimal" />
+      </div>
+      <div class="field">
+        <label for="returnPct">ประมาณการผลตอบแทนของกองทุน LTF (%)</label>
+        <div class="slider-container">
+          <input
+            type="range"
+            id="returnPct"
+            min="-50"
+            max="50"
+            step="5"
+            value="-30"
+            list="returnOptions"
+          />
+          <span id="sliderBubble" class="slider-bubble">-30%</span>
+        </div>
+        <datalist id="returnOptions">
+          <option value="50">50%</option><option value="45">45%</option>
+          <option value="40">40%</option><option value="35">35%</option>
+          <option value="30">30%</option><option value="25">25%</option>
+          <option value="20">20%</option><option value="15">15%</option>
+          <option value="10">10%</option><option value="5">5%</option>
+          <option value="0">0%</option><option value="-5">-5%</option>
+          <option value="-10">-10%</option><option value="-15">-15%</option>
+          <option value="-20">-20%</option><option value="-25">-25%</option>
+          <option value="-30">-30%</option><option value="-35">-35%</option>
+          <option value="-40">-40%</option><option value="-45">-45%</option>
+          <option value="-50">-50%</option>
+        </datalist>
+      </div>
+      <div class="field">
+        <label>
+          ท่านได้รับเงินปันผลจากกองทุนนี้หรือไม่?
+          <span id="infoIcon" class="info-icon">ℹ️</span>
+        </label>
+        <button id="divYes" class="btn secondary">ใช่</button>
+        <button id="divNo" class="btn secondary">ไม่ใช่</button>
+        <div id="infoText" class="info-text hidden">
+          คำนวณมาจากค่าเฉลี่ยผลตอบแทนจากเงินปันผลเฉลี่ย 5 ปีของบริษัทที่ได้คะแนนธรรมภิบาล (CG Score)
+          อยู่ที่ 4.11% ต่อปี
+        </div>
+      </div>
+      <div class="receipt">
+        <h3>สรุปผลการคำนวณ</h3>
+        <p>
+          <span class="label">ต้นทุน</span>
+          <span class="value-unit">
+            <span class="value" id="receiptPrincipal">0.00</span>
+            <span class="unit">บาท</span>
+          </span>
+        </p>
+        <p>
+          <span class="label">ผลตอบแทน</span>
+          <span class="value-unit">
+            <span class="value" id="receiptReturn">0.00</span>
+            <span class="unit">บาท</span>
+          </span>
+        </p>
+        <p>
+          <span class="label">เงินปันผล</span>
+          <span class="value-unit">
+            <span class="value" id="receiptDividend">0.00</span>
+            <span class="unit">บาท</span>
+          </span>
+        </p>
+        <p>
+          <span class="label">ส่วนลดภาษีที่ได้รับ</span>
+          <span class="value-unit">
+            <span class="value" id="receiptTaxBenefit">0.00</span>
+            <span class="unit">บาท</span>
+          </span>
+        </p>
+        <p>
+          <span class="label">ผลตอบแทนรวม</span>
+          <span class="value-unit">
+            <span class="value" id="receiptTotalReturn">0.00</span>
+            <span class="unit">บาท</span>
+          </span>
+        </p>
+      </div>
+      <div class="actions">
+        <button id="next1" class="btn primary">ถัดไป</button>
+      </div>
+    </section>
+
+    <!-- Page 2: แนวทางการลดหย่อนภาษี -->
+    <section id="page2" class="page card">
+      <h2>แนวทางการลดหย่อนภาษี</h2>
+      <div class="accordion">
+        <div class="item">
+          <div class="info-header">1. ผู้มีรายได้พึงประเมินต่ำกว่า 1 ล้านบาท</div>
+          <div class="info-content">
+            ท่านสามารถเลือกแนวทางการลงทุนได้อย่างยืดหยุ่น ไม่ว่าจะถือหน่วยลงทุนไว้เพื่อรอตัดสินใจขายในอนาคต หรือเลือกย้ายไปยังนโยบายการลงทุนอื่นเพื่อหาโอกาสสร้างผลตอบแทน โดยไม่จำเป็นต้องใช้สิทธิย้ายมูลค่ากองทุน LTF มาลงทุน ThaiESGX เท่านั้น<br><br>
+            <strong>ทางเลือกสำหรับผู้ถือ LTF ที่อยู่ในกลุ่มนี้</strong><br>
+            ทางเลือก 1. ใช้สิทธิย้ายมูลค่า LTF มาลงทุน ThaiESGX โดยมีเงื่อนไขว่า<br>
+            - ท่านจะใช้สิทธิได้สูงสุด 300,000 บาท โดยไม่เกิน 30% ของรายได้พึงประเมิน ในปี 2568<br>
+            - ส่วนที่เกิน สามารถนำมาลดหย่อนภาษีในปี 2569–2572 โดยไม่เกินปีละ 50,000 บาท และไม่เกิน 30% ของรายได้พึงประเมินในปีนั้นๆ<br><br>
+            ทางเลือก 2. ไม่ใช้สิทธิย้ายมูลค่า LTF มาลงทุน ThaiESGX ท่านสามารถตัดสินใจขายกองทุน LTF และเลือกลดหย่อนภาษีด้วยการซื้อกองทุน ThaiESG หรือ RMF ก็ได้<br>
+            - กองทุน ThaiESG มีนโยบายการลงทุนในหุ้นไทยกลุ่ม ESG เหมือนกองทุน ThaiESGX<br>
+            - กองทุน RMF มีนโยบายาการลงทุนที่หลากหลายทั้งตลาดเงินและตลาดทุน ทั้งในและต่างประเทศ
+          </div>
+        </div>
+        <div class="item">
+          <div class="info-header">2. ผู้มีรายได้พึงประเมิน 1–2 ล้านบาท</div>
+          <div class="info-content">
+            ท่านมีความยืดหยุ่นในการจัดการกองทุน LTF ของท่านอย่างมาก โดยสามารถเลือกถือต่อ รอตัดสินใจขาย หรือย้ายประเภทการลงทุนได้ แต่ควรพิจารณามูลค่าปัจจุบันของกองทุน LTF ที่ถืออยู่เป็นหลัก<br><br>
+            หากกองทุน LTF ของท่านไม่เกิน 500,000 บาท การย้ายมาลงทุน ThaiESGX จะสะดวกและง่ายกว่า แต่ถ้าเกิน 500,000 บาท แนะนำให้ขายออกแล้วจัดสรรเงินในกองทุนลดหย่อนภาษีหลากหลายแทน เพื่อประสิทธิภาพและการกระจายความเสี่ยงที่ดียิ่งขึ้น<br><br>
+            <strong>ทางเลือกสำหรับผู้ถือ LTF กลุ่มนี้</strong><br>
+            - ประเมินมูลค่าก่อนว่าคุ้มใช้สิทธิย้ายทั้งหมดหรือไม่<br>
+            - เลือกกองทุนลดหย่อนภาษีที่ตรงกับโปรไฟล์ทั้ง ThaiESGX, ThaiESG, RMF<br>
+            - ปรึกษาที่ปรึกษาฟิลลิป หรือ <a href="https://phillipinvestorcenter.github.io/TaxCalculator/" target="_blank">โปรแกรมคำนวนภาษี</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="info-header">3. ผู้มีรายได้พึงประเมินสูงกว่า 2 ล้านบาท</div>
+          <div class="info-content">
+            หากรายได้เกิน 2 ล้านบาท ให้พิจารณาว่าจะใช้สิทธิเต็มจำนวนหรือไม่ เพราะจะได้ลดหย่อนได้สูงสุด<br><br>
+            การย้ายมูลค่า LTF มายัง ThaiESGX เป็นทางเลือกที่ดีที่สุดถ้าใช้สิทธิเต็มจำนวน และสามารถซื้อ ThaiESG และ RMF เพิ่มเติม เพื่อให้ลดหย่อนภาษีในปีนี้ได้อย่างคุ้มค่า<br><br>
+            <strong>ทางเลือกสำหรับผู้ถือ LTF กลุ่มนี้</strong><br>
+            - ย้ายมูลค่า LTF มาลดหย่อนสูงสุด 300,000 บาท (30% ของรายได้) ส่วนที่เกินทยอยลดหย่อนปีละ 50,000 บาท ไม่เกิน 30% ของรายได้ในปีนั้นๆ<br>
+            - ซื้อกองทุน ThaiESG ลดหย่อนสูงสุด 300,000 บาท<br>
+            - ซื้อกองทุน ThaiESGX (เงินใหม่) ลดหย่อนสูงสุด 300,000 บาท<br>
+            - ซื้อกองทุน RMF ลดหย่อนสูงสุด 500,000 บาท (ไม่รวม PVD & กบข.)<br><br>
+            **หากใช้สิทธิทั้งหมด จะลดหย่อนได้สูงสุด 1,400,000 บาท**
+          </div>
+        </div>
+      </div>
+
+      <div class="modern-links">
+        <a href="https://www.setinvestnow.com/th/knowledge/article/664-rinjai-investment-options-with-tax-ltf-thaiesgx-deduction-benefits-in-2025"
+           class="modern-link" target="_blank">
+          ท่านสามารถศึกษาทางเลือกการลดหย่อนภาษี 2568 ได้ที่นี่
+        </a>
+        <a href="https://thailandesg.com/thaiesgx/" class="modern-link" target="_blank">
+          ท่านสามารถศึกษากองทุนลดหย่อนภาษี ThaiESGX ได้ที่นี่
+        </a>
+      </div>
+      <div class="actions">
+        <button id="back2" class="btn secondary">ย้อนกลับ</button>
+        <button id="ackBtn" class="btn primary">รับทราบ</button>
+      </div>
+    </section>
+
+    <!-- Page 3: ท่านยังจำเป็นต้องเสียภาษีในปีนี้หรือไม่? -->
+    <section id="page3" class="page card">
+      <h2>ท่านยังจำเป็นต้องเสียภาษีในปีนี้หรือไม่?</h2>
+      <div class="field question-buttons">
+        <button id="taxYes" class="btn modern primary">ใช่</button>
+        <button id="taxNo" class="btn modern secondary">ไม่ใช่</button>
+      </div>
+      <div class="actions">
+        <button id="back3" class="btn secondary">ย้อนกลับ</button>
+      </div>
+    </section>
+
+    <!-- Page 4: ใช้มูลค่า LTF เพื่อลดหย่อนภาษีหรือไม่ -->
+    <section id="page4" class="page card">
+      <h2>ท่านประสงค์ใช้มูลค่า LTF เพื่อลดหย่อนภาษีหรือไม่</h2>
+      <div class="field question-buttons">
+        <button id="useLtfYes" class="btn modern primary">ใช่</button>
+        <button id="useLtfNo" class="btn modern secondary">ไม่ใช่</button>
+      </div>
+      <div class="actions">
+        <button id="back4" class="btn secondary">ย้อนกลับ</button>
+      </div>
+    </section>
+
+    <!-- Page 5: วิธีการสับเปลี่ยนกองทุน LTF ไปยัง ThaiESGX -->
+    <section id="page5" class="page card">
+      <h2>วิธีการสับเปลี่ยนกองทุน LTF ไปยัง ThaiESGX</h2>
+      <div style="text-align:center; margin:1.5rem 0;">
+        <img src="LTF to TESGX 1.jpg" alt="LTF to TESGX 1" style="display:block; margin:0 auto 1rem; max-width:80%;" />
+        <img src="LTF to TESGX 2.jpg" alt="LTF to TESGX 2" style="display:block; margin:0 auto 1.5rem; max-width:80%;" />
+      </div>
+      <div class="accordion">
+        <div class="item">
+          <div class="info-header">สับเปลี่ยนกองทุน LTF ภายใต้ฟิลลิป (ภายใต้บลจ.เดียวกัน)</div>
+          <div class="info-content">
+            <p>ท่านสามารถดำเนินการได้ผ่าน 2 ช่องทาง ดังนี้</p>
+            <ol>
+              <li>Online ผ่าน App Funds SuperMart Plus</li>
+              <li>แบบฟอร์มการสับเปลี่ยน (ติดต่อที่ปรึกษาการลงทุนของท่าน)</li>
+            </ol>
+            <div style="text-align:center; margin-top:1rem;">
+              <img src="สับ LTF Online.jpg" alt="สับ LTF Online" style="display:block; margin:0 auto; max-width:80%;" />
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="info-header">สับเปลี่ยนกองทุน LTF ที่ไม่ได้อยู่ภายใต้ฟิลลิป</div>
+          <div class="info-content">
+            <p>ท่านสามารถติดต่อต้นทางของท่าน เพื่อแจ้งความประสงค์สับเปลี่ยนกองทุน LTF ไปยัง ThaiESGX</p>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="back5" class="btn secondary">ย้อนกลับ</button>
+        <a href="#" class="modern-link restartBtn">เริ่มใหม่</a>
+      </div>
+    </section>
+
+    <!-- Page 6 -->
+    <section id="page6" class="page card">
+      <h2><strong>มุมมองตลาดหุ้นไทย</strong></h2>
+      <p>
+        ปัจจุบันตลาดหุ้นไทยซื้อขายที่ระดับ 1,160-1,200 จุด 
+        Valuation อยู่ที่ Forward P/E 12.5x (-2SD) 
+        ต่ำกว่าค่าเฉลี่ย 10 ปีที่ 15.8x  
+        มีความน่าสนใจในเชิงมูลค่า
+      </p>
+      <p>
+        ท่านสามารถพิจารณาขาย LTF ออกได้ โดยสามารถดำเนินการได้ดังนี้
+      </p>
+      <div class="accordion">
+        <div class="item">
+          <div class="info-header">1. โยกเงินไปลงทุนเพื่อหาโอกาสผลตอบแทนใหม่</div>
+          <div class="info-content">
+            ท่านสามารถนำเงินที่ขายจาก LTF มาลงทุนกองทุนทั่วไป เพื่อหาโอกาสในการสร้างผลตอบแทนได้
+            <br style="margin-bottom:0.5rem;">
+            <a href="2025Q2_Idea Asset Allocation.pdf"
+               target="_blank"
+               class="modern-link"
+               style="display:inline-block; margin-top:0.5rem;">
+              กองทุนทั่วไปแนะนำ
+            </a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="info-header">2. พิจารณาซื้อกองทุนลดหย่อนภาษี RMF หรือ ThaiESG</div>
+          <div class="info-content">
+            ท่านสามารถนำเงินที่ขายจาก LTF มาลงทุนกองทุน RMF หรือ ThaiESG เพื่อลดหย่อนภาษี โดยมีสินทรัพย์ให้เลือกหลากหลายประเภท
+            <br style="margin-bottom:0.5rem;">
+            <a href="(กองทุน TAX) FUND MENU Q2.2025.pdf"
+               target="_blank"
+               class="modern-link"
+               style="display:inline-block; margin-top:0.5rem;">
+              กองทุนลดหย่อนภาษีแนะนำ
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="https://phillipinvestorcenter.github.io/TaxCalculator/"
+           class="modern-link" target="_blank">
+          ทดลองคำนวณภาษี
+        </a>
+        <a href="#" class="modern-link restartBtn">
+          เริ่มใหม่
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
